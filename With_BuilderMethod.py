@@ -57,13 +57,13 @@ class STL(Course):
 		return "STL"
 
 # Complex Course
-class ComplexCourse:
+class ComplexCourse1:
 
 	def __repr__(self):
 		return 'Fee : {0.fee} | available_batches: {0.batches}'.format(self)
 
 # Complex course
-class Complexcourse(ComplexCourse):
+class Complexcourse(ComplexCourse1):
 
 	def Fee(self):
 		self.fee = 7000

@@ -58,7 +58,7 @@ def random_course():
 
 	"""A random class for choosing the course"""
 
-	return random.choice([SDE, STL, DSA])()
+	return random.choice(['', STL, DSA])()
 
 
 if __name__ == "__main__":
