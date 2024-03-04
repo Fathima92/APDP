@@ -15,19 +15,18 @@ class Order:
             total += self.quantities[i] * self.price[i]
         return total
 
-    def pay (self, payment_type, security_code):
-        if payment_type == "debit":
-            print("processing debit payment")
-            print(f"verifying security code: {security_code}")
-            self.status= "paid"
 
-        elif payment_type == "credit":
+
+class PaymentProcessor:
+
+    def pay_credit (self, order, security_code):
             print("processing credit payment")
             print(f"verifying security code: {security_code}")
-            self.status = "paid"
-
-        else:
-            raise Exception(f"Unknown payment type: {payment_type}")
+            order.status = "paid"
+    def pay_debit (self, order, security_code):
+            print("processing credit payment")
+            print(f"verifying security code: {security_code}")
+            order.status = "paid"
 
 order = Order()
 order.add_item("Keyboard", 1, 50)
@@ -35,7 +34,8 @@ order.add_item("SSD", 1, 150)
 order.add_item("USB cable", 2, 5)
 
 print(order.total_price())
-order.pay("debit", "123495")
+processor = PaymentProcessor()
+processor.pay_debit(order, "123495")
 
 
 

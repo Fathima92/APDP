@@ -5,7 +5,6 @@
 class MotorCycle:
 
 	"""Class for MotorCycle"""
-
 	def __init__(self):
 		self.name = "MotorCycle"
 
@@ -41,7 +40,6 @@ class Adapter:
 	motorCycle = MotorCycle()
 	motorCycle = Adapter(motorCycle, wheels = motorCycle.TwoWheeler)
 	"""
-
 	def __init__(self, obj, **adapted_methods):
 		"""We set the adapted methods in the object's dict"""
 		self.obj = obj
