@@ -17,11 +17,12 @@ class Order:
         for i in range(len(self.price)):
             total += self.quantities[i] * self.price[i]
         return total
+
 class Authorizer(ABC):
-    @abstractmethod
+    def is_authorized(self) -> bool:
+        pass
 
-
-class SMSAuth:
+class SMSAuth(Authorizer):
 
     authorizer = False
 
@@ -31,6 +32,16 @@ class SMSAuth:
 
     def is_authorized(self) -> bool:
          return self.authorizer
+
+class NotRobot(Authorizer):
+    authorizer = False
+    def not_robot(self):
+        print("Are yot a robot?")
+        self.authorizer = True
+
+    def is_authorized(self) -> bool:
+        return self.authorizer
+
 class PaymentProcessor(ABC):
 
     @abstractmethod
@@ -39,7 +50,7 @@ class PaymentProcessor(ABC):
 
 class DebitPaymentProcessor(PaymentProcessor):
 
-    def __init__(self, security_code, authorizer: SMSAuth):
+    def __init__(self, security_code, authorizer: Authorizer):
         self.security_code = security_code
         self.authorizer = authorizer
 
@@ -64,11 +75,8 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 class PaypalPaymentProcessor(PaymentProcessor):
 
-    def __init__(self, email_address):
+    def __init__(self, email_address, authorizer: Authorizer):
         self.email_address = email_address
-
-    def __init__(self, security_code, authorizer: SMSAuth):
-        self.security_code = security_code
         self.authorizer = authorizer
 
     def pay(self, order):
