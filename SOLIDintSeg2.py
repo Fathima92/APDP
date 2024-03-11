@@ -22,13 +22,16 @@ class Order:
 class PaymentProcessor(ABC):
 
     @abstractmethod
-    def auth_sms(self, code):
-        pass
-    @abstractmethod
     def pay(self, order):
         pass
 
-class DebitPaymentProcessor(PaymentProcessor):
+class PaymentProcessor_SMS(PaymentProcessor):
+
+    @abstractmethod
+    def auth_sms(self, code):
+        pass
+
+class DebitPaymentProcessor(PaymentProcessor_SMS):
 
     def __init__(self, security_code):
         self.security_code = security_code
@@ -50,15 +53,13 @@ class CreditPaymentProcessor(PaymentProcessor):
     def __init__(self, security_code):
         self.security_code = security_code
 
-    def auth_sms(self, code):
-        raise Exception("Credit Card Payment dont support SMS code authourization")
     def pay(self, order):
         print("processing credit payment")
         print(f"verifying security code: {self.security_code}")
         order.status = "paid"
 
 
-class PaypalPaymentProcessor(PaymentProcessor):
+class PaypalPaymentProcessor(PaymentProcessor_SMS):
 
     def __init__(self, email_address):
         self.email_address = email_address
