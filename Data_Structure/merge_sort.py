@@ -1,12 +1,4 @@
 def merge_sort(data):
-  """Sorts a list of data in ascending order using the merge sort algorithm.
-
-  Args:
-      data: A list of sortable items.
-
-  Returns:
-      The sorted list.
-  """
 
   # Base case: If list has 0 or 1 element, it's already sorted
   if len(data) <= 1:

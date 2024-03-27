@@ -2,6 +2,7 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 import webbrowser
+import  pytest
 from abc import ABC, abstractmethod
 
 # Stradegy Pettern Data Processing Strategeies
@@ -113,7 +114,7 @@ class ProductPreferenceAnalysis(DataProcess):
         #rename
         product_preferece.columns = ['Total_Quantity_sold','Average_income','Total_income','Number_of_Transactions']
         # sorting base on quantity
-        product_preferece = pd_data.sort_values(by='Total_Quantity_Sold', ascending=False).reset_index())
+        product_preferece = product_preferece.sort_values(by='Total_Quantity_Sold', ascending=False).reset_index())
         print("Product Preference data analysing ...")
         plt.figure(figsize=(10,5))
         plt.axis('off')
@@ -138,3 +139,41 @@ class ProductPreferenceAnalysis(DataProcess):
 
 
 
+
+
+# (Interface Strategy)
+class DataProcessingApplication(ABC):
+  @abstractmethod
+  def (self):
+    pass
+
+# Concrete Strategies
+class SquareAreaCalculator(ShapeAreaCalculator):
+  def __init__(self, side):
+    self.side = side
+
+  def calculate_area(self):
+    return self.side * self.side
+
+class CircleAreaCalculator(ShapeAreaCalculator):
+  def __init__(self, radius):
+    self.radius = radius
+
+  def calculate_area(self):
+    return 3.14159 * self.radius * self.radius
+
+# Context
+class Shape:
+  def __init__(self, area_calculator):
+    self.area_calculator = area_calculator
+
+  def get_area(self):
+    return self.area_calculator.calculate_area()
+
+# Usage
+# HR = ModelType(HR(data))
+square = Shape(SquareAreaCalculator(5))
+print("Square Area:", square.get_area())
+
+circle = Shape(CircleAreaCalculator(3))
+print("Circle Area:", circle.get_area())

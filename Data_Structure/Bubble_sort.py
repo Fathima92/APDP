@@ -1,12 +1,4 @@
 def bubble_sort(data):
-  """Sorts a list of data in ascending order using bubble sort algorithm.
-
-  Args:
-      data: A list of sortable items.
-
-  Returns:
-      The sorted list.
-  """
 
   # Loop through all elements of the list n-1 times
   for i in range(len(data) - 1):

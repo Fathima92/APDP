@@ -1,13 +1,4 @@
 def linear_search(data, target):
-  """Searches for a target value in a list using linear search.
-
-  Args:
-      data: A list of items.
-      target: The value to search for.
-
-  Returns:
-      The index of the target element if found, otherwise -1.
-  """
 
   for i in range(len(data)):
     if data[i] == target:
