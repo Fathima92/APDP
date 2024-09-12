@@ -7,7 +7,7 @@ class Student:
         self.age = age
 
 class Networking_Student(Student):
-    pass
+    print("h")
 class Software_Student(Student):
     pass
 
