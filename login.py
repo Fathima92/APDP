@@ -6,6 +6,6 @@ class Login:
        self.password = password
 
 l = Login("ABC", "123")
-print()
+print(l)
 
 
